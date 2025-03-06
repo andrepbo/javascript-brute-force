@@ -1,27 +1,42 @@
-function bruteForceSearch(targetValue) {
-    // Validate if the target value has exactly 3 digits
-    if (targetValue < 0 || targetValue > 999) {
-        console.log("Invalid value. Please enter a number between 000 and 999");
+function bruteForceSearch(targetValue, numDigits = 3) {
+    if (typeof targetValue !== "number" || isNaN(targetValue)) {
+        console.log("Value has to be a number.");
+        return;
+    }
+
+    // Define the max possible number based on digits (e.g., 999 for 3 digits)
+    const maxValue = Math.pow(10, numDigits) - 1;
+    if (targetValue < 0 || targetValue > maxValue) {
+        console.log(`Code inserted has to be between 000 and ${maxValue}`);
         return;
     }
 
     let attempts = 0;
-    let currentValue = 0; // Start at 000
+    let currentValue = 0;
+    const startTime = performance.now(); // Capture start time
 
-    // Simulate the brute-force search
-    while (currentValue <= 999) {
+    while (currentValue <= maxValue) {
         attempts++;
 
-        // If we find the target value, stop the search
+        // Print every 100 attempts to track progress (optional)
+        if (attempts % 100 === 0) {
+            console.log(`Attempt ${attempts}: Trying ${currentValue.toString().padStart(numDigits, '0')}...`);
+        }
+
         if (currentValue === targetValue) {
-            console.log(`Target found: ${currentValue.toString().padStart(3, '0')}`);
-            console.log(`Number of attempts: ${attempts}`);
+            const endTime = performance.now(); // Capture end time
+            console.log("\nTarget found!");
+            console.log({
+                codeInserted: targetValue,
+                attempts,
+                executionTime: `${(endTime - startTime).toFixed(2)}ms`
+            });
             return;
         }
 
-        // Move to the next attempt
         currentValue++;
     }
 }
 
-bruteForceSearch(378);
+// Run the brute-force search with a 3-digit number
+bruteForceSearch(234, 3);
