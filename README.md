@@ -1,2 +1,12 @@
-# brute-force-js
-A brute-force simulation that iterates through all possible numerical combinations to find a target value. This project is designed to demonstrate brute-force search techniques and can be adapted for various numerical search problems.
+# JavaScript Brute Force
+
+This project is a simple brute-force search algorithm implementation that iterates through all possible numerical combinations until it finds a predefined target value. This project is useful for understanding brute-force techniques and search algorithms.
+
+## How to Use
+
+### Clone the repository:
+```bash
+git clone https://github.com/andrepbo/javascript-brute-force.git
+cd javascript-brute-force
+node index.js
+```
